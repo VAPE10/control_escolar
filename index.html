@@ -1,0 +1,187 @@
+<!DOCTYPE html-->
+    <html>
+        <head>
+            <title>CONTROL ESCOLAR</title>
+            <!-- <meta charset="UTF-8"> -->
+            <link rel="stylesheet" href="css/jquery.mobile-1.4.5.min.css" />
+            <script src="js/jquery.js"></script>
+            <script src="js/jquery.mobile-1.4.5.min.js"></script>
+            <style type="text/css">
+                h1{
+                    text-align: center;
+                }
+                p{
+                    text-align: center;
+                }
+                #menus1{
+                    width: 200px;
+                    height: 200px;
+                    position: absolute;
+                    left: 60%;
+                    top: 30%;
+                }
+                #menus2{
+                    width: 200px;
+                    height: 200px;
+                    position: absolute;
+                    left: 20%;
+                    top: 30%;
+                }
+                #pieprincipal{
+                    width: 100%;   
+                    position: absolute;
+                    top: 80%;
+                }
+            </style>
+            <script type="text/javascript">
+                $(document).ready(function inicio(){
+                    
+                var btnEnvioDat=$("#enviar_dat");
+                var btnEnvioCal=$("#enviar_cal")
+                
+                btnEnvioDat.click(function enviarDatos(){
+                    
+                    var ncon=$("#control").val();
+                    var nom=$("#nombre").val();
+                    var app=$("#apepa").val();
+                    var apm=$("#apema").val();
+                    var ema=$("#email").val();
+                    var sem=$("#semestre").val();
+                    
+                    $.ajax({
+                        type:"POST",
+                        url:"http://vape2.260mb.net/envio_datos.php",
+                        data:"Numero_control="+ncon+"&Nombre="+nom+"&Apellido_Paterno="+app+"&Apellido_Materno="+apm+"&Email="+ema+"&Semestre="+sem,
+                        success:recepcion
+                        })
+                    });
+                
+                btnEnvioCal.click(function enviarDatos(){
+                     
+                     var ncon=$("#con").val();
+                     var c1=parseInt($("#Cal1").val());
+                     var c2=parseInt($("#Cal2").val());
+                     var c3=parseInt($("#Cal3").val());
+                     var c4=parseInt($("#Cal4").val());
+                     
+                     var prom=((c1+c2+c3+c4)/4);
+                    
+                     $.ajax({
+                        type:"POST",
+                        url:"http://vape2.260mb.net/envio_cal.php",
+                        data:"Numero_control="+ncon+"&Cali1="+c1+"&Cali2="+c2+"&Cali3="+c3+"&Cali4="+c4+"&Promedio="+prom,
+                        success:recepcion
+                        })
+                    });
+                    
+                function recepcion(datos){
+                    alert(datos);
+                    }    
+                    });
+            </script>
+        </head>
+        <body>
+           
+            <div data-role="page" id="Principal" data-theme="b">
+                <div data-role="header">
+                    <p>MENU</p>
+                </div>
+                <div dato-role="content">
+                    <h1>Seleccione una opcion</h1>
+                    <p>Registro de alumnos&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    Registro de calificaciones</p>
+                    <a href="#Reg_Cali" data-role="button" data-transition="slideup" id="menus1"><img src="images/reg_cal.png"></img></a>
+                    <a href="#Reg_Datos" data-role="button" data-transition="slideup" id="menus2"><img src="images/reg_al.png"></a>
+                </div>
+                <div data-role="footer" id="pieprincipal">
+                    <p>Pie de página</p>
+                </div>
+            </div>
+            
+            <div data-role="page" id="Reg_Datos" data-theme="a">
+                <div data-role="header">
+                    <a href="#Principal" data-role="button" data-transition="flip" data-add-back-btn="true" data-icon="home">Regresar</a>
+                    <p>Registro de alumnos</p>
+                </div>
+                <div data-role="content">
+                    
+                    <form method="POST" action="envio_datos.php">
+                        <div class="ui-field-contain">
+                            
+                            <label for="control">Número de control: </label>
+                            <input type="text" name="control" id="control">
+                           
+                            <label for="nombre">Nombre: </label>
+                            <input type="text" name="nombre" id="nombre">
+                
+                            <label for="apepa">Apellido Paterno: </label>
+                            <input type="text" name="apepa" id="apepa">
+                
+                            <label for="apema">Apellido Materno: </label>
+                            <input type="text" name="apema" id="apema">
+                           
+                            <label for="email">Email: </label>
+                            <input type="text" name="email" id="email" placeholder="alumno@servicio.extensión">
+                
+                            <label for="semestre">Semestre: </label>
+                            <input type="text" name="semestre" id="semestre">
+                            
+                        </div>
+                        
+                        <input type="button" name="enviar_dat" id="enviar_dat" value="Enviar">
+                     </form>
+                    <div id="respuesta"> </div>
+                </div>
+                <div data-roler="footer">
+                    <p>Derechos reservados</p>
+                </div>
+            </div>
+            
+            <div data-role="page" id="Reg_Cali" data-theme="a">
+                <div data-role="header">
+                    <a href="#Principal" data-role="button" data-transition="flip" data-add-back-btn="true" data-icon="home">Regresar</a>
+                    <p>Registro de calificaciones</p>
+                </div>
+                
+                <div data-role="content">
+                    
+                    <form method="POST" action="envio_cal.php">
+                        <div class="ui-field-contain">
+                           
+                            <label for="con">Numero de control: </label>
+                            <input type="text" name="con" id="con">
+                
+                            <label for="Cal1">Calificacion 1: </label>
+                            <input type="text" name="Cal1" id="Cal1">
+                
+                            <label for="Cal2">Calificacion 2: </label>
+                            <input type="text" name="Cal2" id="Cal2">
+                
+                            <label for="Cal3">Calificacion 3: </label>
+                            <input type="text" name="Cal3" id="Cal3">
+                
+                            <label for="Cal4">Calificacion 4: </label>
+                            <input type="text" name="Cal4" id="Cal4">
+                                
+                            <label for="prom">Promedio: </label>
+                            <input type="text" name="prom" id="prom">
+               
+                        </div>
+                        <input type="button" name="enviar_cal" id="enviar_cal" value="Enviar">
+                    </form>
+                    <div id="respuesta1"> </div>
+                </div>
+                <div data-roler="footer" id="cali">
+                    <p>Derechos reservados</p>
+                </div>
+            </div>
+            
+        </body>
+    </html>
