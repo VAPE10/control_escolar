@@ -14,25 +14,6 @@
                 p{
                     text-align: center;
                 }
-                #menus1{
-                    width: 200px;
-                    height: 200px;
-                    position: absolute;
-                    left: 60%;
-                    top: 30%;
-                }
-                #menus2{
-                    width: 200px;
-                    height: 200px;
-                    position: absolute;
-                    left: 20%;
-                    top: 30%;
-                }
-                #pieprincipal{
-                    width: 100%;   
-                    position: absolute;
-                    top: 80%;
-                }
             </style>
             <script type="text/javascript">
                 $(document).ready(function inicio(){
@@ -84,22 +65,14 @@
         <body>
            
             <div data-role="page" id="Principal" data-theme="b">
-                <div data-role="header">
-                    <p>MENU</p>
+                <div data-role="header" id="en_principal">
+                    <p>Seleccione una opcion</>
                 </div>
                 <div dato-role="content">
-                    <h1>Seleccione una opcion</h1>
-                    <p>Registro de alumnos&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    Registro de calificaciones</p>
-                    <a href="#Reg_Cali" data-role="button" data-transition="slideup" id="menus1"><img src="images/reg_cal.png"></img></a>
+                    <p>Registro de alumnos</p>
                     <a href="#Reg_Datos" data-role="button" data-transition="slideup" id="menus2"><img src="images/reg_al.png"></a>
+                    <p>Registro de cailificaciones</p>
+                    <a href="#Reg_Cali" data-role="button" data-transition="slideup" id="menus1"><img src="images/reg_cal.png"></img></a>
                 </div>
                 <div data-role="footer" id="pieprincipal">
                     <p>Pie de página</p>
